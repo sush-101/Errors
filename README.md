@@ -1,1 +1,1 @@
-# Errors
+# Errors and notes
