@@ -1,0 +1,22 @@
+1. Hashcode is used for hash based collections like sets,maps.
+2. As hash-based collections work on hashing, when an object is to be placed in hash-based collections, hashcode function is called to
+   get the hash of the object. So based on this integer, the object is placed at the 'hash' memory location.
+   
+*** For standard classes like list,Strings hashcode is written in such a way that for the same content same hashcode is generated.
+*** But for custom classes, this is not the case. We need to override the hashcode function for same('same' is defined according to us) objects is same.
+
+3. Everthing is fine till now, but the hashcode function can sometimes provide same hash for two different objects('different' is defined according to us).
+   Here comes the concept of bucket.
+4. In the bucket, the objects which generate same hash are placed(the objects can be equal or unequal to each other) through links.
+
+What happens when you perform contains() method ?
+
+1. The hashcode is generated for the object you want to search.
+2. The bucket number you get is to be searched. But the bucket can contain unequal objects (because hashcode can generate same hash for different objects of different classes
+    as well).
+3. Here comes the concept of equals().
+4 equals() is used to compare objects within bucket. The equals method for default classes like String,Lists is predefined.
+5. For customized objects we have to write the equals() method according to our requirements.
+
+SUMMARY : Same objects are placed in the same bucket(overriden). But different objects can also generate same hashcode and they might end up in the same bucket.
+So, equals() method is invoked within the bucket before overriding.
