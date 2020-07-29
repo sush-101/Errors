@@ -20,3 +20,32 @@ What happens when you perform contains() method ?
 
 SUMMARY : Same objects are placed in the same bucket(overriden). But different objects can also generate same hashcode and they might end up in the same bucket.
 So, equals() method is invoked within the bucket before overriding.
+Colliding hashcodes and then searching within the bucket using equals can increase the Time complexity , so writing hashcode function that does not make collisions
+is recommended and it also does not require equals method. But that is not always possible , possible when the data size is less.
+
+//CODE
+class Pair{
+    int key,value;
+    Pair(int x,int y){
+        key = x;value = y;
+    }
+    @Override
+    public boolean equals(Object obj){
+        if(this == obj)return true;
+        if(obj == null || obj.getClass() != this.getClass())return false;
+        Pair temp = (Pair)obj; 
+        if(this.key == temp.key && this.value == temp.value)return true;
+        return false;
+    }
+    @Override
+    public int hashCode(){
+        return key*7+value*11;
+    }
+}
+TIP : The above code is more useful while dealing with maps because maps need hashcode to place the object or replace.
+But in the above example as we are dealing with sets to only check the presence the code can be modified as below :
+ PAIR CLASS can be removed.
+                int hashcode1 = x1*7+y2*11,hashcode2 = x2*7+y1*11;
+                if(set.contains(hashcode1) && set.contains(hashcode2)){
+                   //code
+                }
