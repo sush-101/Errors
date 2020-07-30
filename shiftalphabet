@@ -1,0 +1,1 @@
+(char)((str.charAt(i)-'a'+arr[i])%26+'a');
